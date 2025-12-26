@@ -1,73 +1,91 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const vehicles = [
-    { name: "BATMOBILE", img: "/assets/download.jpg", desc: "URBAN ASSAULT VEHICLE", quote: "Tell me, do you bleed? I'll make you bleed!" },
-    { name: "BATCYCLE", img: "/assets/download (1).jpg", desc: "HIGH SPEED PURSUIT", quote: "They think I'm hiding in the shadows. But I am the shadows!" },
-    { name: "BATWING", img: "/assets/download (2).jpg", desc: "AERIAL SUPERIORITY", quote: "Oh, you think darkness is your ally." },
+const items = [
+    {
+        name: "BATMOBILE",
+        img: "/assets/download.jpg",
+        quote: "They think I'm hiding in the shadows. But I am the shadows!"
+    },
+    {
+        name: "BATCYCLE",
+        img: "/assets/download (1).jpg",
+        quote: "Oh, you think darkness is your ally. But you merely adopted the dark; I was born in it, moulded by it."
+    },
+    {
+        name: "BATWING",
+        img: "/assets/download (2).jpg",
+        quote: "You either die a hero, or you live long enough to see yourself become the villain."
+    },
+    {
+        name: "THE BATMAN",
+        img: "/assets/The_Batman.png",
+        quote: "I am vengeance! I am the night! I am Batman!"
+    },
 ];
 
 const Vehicles: React.FC = () => {
     return (
-        <div className='relative z-10 bg-bat-black'>
-            {vehicles.map((v, i) => (
-                <VehicleSection key={i} vehicle={v} />
-            ))}
-        </div>
+        <section className="bg-bat-black py-20 overflow-hidden">
+            <h2 className="text-4xl font-bat text-bat-silver mb-32 tracking-[0.5em] text-center">TACTICAL ASSETS</h2>
+            <div className="container mx-auto px-6 space-y-40">
+                {items.map((item, i) => (
+                    <ZigZagSection key={i} item={item} index={i} />
+                ))}
+            </div>
+        </section>
     );
 };
 
-const VehicleSection = ({ vehicle }: { vehicle: any }) => {
+const ZigZagSection = ({ item, index }: { item: any, index: number }) => {
+    const isEven = index % 2 === 0;
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start end", "end start"]
     });
 
-    // Parallax & Tilt
-    const rotateY = useTransform(scrollYProgress, [0.2, 0.8], [15, -15]);
+    const xImg = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? -100 : 100, 0, isEven ? -50 : 50]);
+    const xText = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? 100 : -100, 0, isEven ? 50 : -50]);
     const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
 
     return (
-        <section ref={ref} className="min-h-screen flex flex-col items-center justify-center py-20 relative overflow-hidden perspective-1000">
-            <motion.div style={{ opacity, y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }} className="absolute inset-0 pointer-events-none opacity-20 z-0">
-                <h1 className="text-[20vw] font-bat text-bat-grey whitespace-nowrap absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-sm">
-                    {vehicle.name}
-                </h1>
+        <div ref={ref} className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 ${isEven ? '' : 'md:flex-row-reverse'}`}>
+            {/* Image Container */}
+            <motion.div
+                style={{ x: xImg, opacity }}
+                className="w-full md:w-1/2 relative group"
+            >
+                <div className="aspect-video overflow-hidden rounded-lg border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-bat-grey/10">
+                    <img
+                        src={item.img}
+                        alt={item.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-110"
+                    />
+                    {/* Scanline effect overlay */}
+                    <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]"></div>
+                </div>
+                {/* Tactical Label */}
+                <div className="absolute -top-4 -left-4 font-mono text-[10px] text-bat-red tracking-[0.3em] bg-black/80 px-4 py-1 border border-bat-red/30">
+                    SECURE_ASSET_{index + 1}
+                </div>
             </motion.div>
 
-            <div className="relative z-10 text-center">
-                <motion.h2
-                    style={{ opacity, y: -50 }}
-                    className="text-4xl md:text-6xl font-bat text-white mb-8 tracking-[0.2em] shadow-lg"
-                >
-                    {vehicle.name}
-                </motion.h2>
-
-                <motion.div
-                    style={{ rotateY, scale, opacity, transformStyle: "preserve-3d" }}
-                    className="w-[80vw] max-w-4xl aspect-video bg-bat-grey/30 rounded-lg overflow-hidden border border-white/10 shadow-2xl relative group"
-                >
-                    <img
-                        src={vehicle.img}
-                        alt={vehicle.name}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale hover:grayscale-0 brightness-75 hover:brightness-100"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bat-black via-transparent to-transparent opacity-80"></div>
-                </motion.div>
-
-                <motion.p
-                    style={{ opacity, y: 50 }}
-                    className="mt-8 text-bat-red font-mono tracking-widest text-lg"
-                >
-                    STATUS: {vehicle.desc}
-                </motion.p>
-                <p className="mt-2 text-bat-silver text-xs italic font-sans opacity-40 group-hover:opacity-100 transition-opacity">
-                    "{vehicle.quote}"
-                </p>
-            </div>
-        </section>
+            {/* Text Container */}
+            <motion.div
+                style={{ x: xText, opacity }}
+                className={`w-full md:w-1/2 text-center ${isEven ? 'md:text-left' : 'md:text-right'}`}
+            >
+                <h3 className="text-3xl md:text-5xl font-bat text-white mb-6 tracking-widest">{item.name}</h3>
+                <div className="relative inline-block">
+                    <p className="text-lg md:text-2xl font-bat italic text-bat-silver leading-relaxed relative z-10">
+                        "{item.quote}"
+                    </p>
+                    {/* Accent bar */}
+                    <div className={`absolute -bottom-4 w-20 h-1 bg-bat-red/50 ${isEven ? 'left-0' : 'right-0'}`}></div>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 

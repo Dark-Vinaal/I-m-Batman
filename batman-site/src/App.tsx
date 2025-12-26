@@ -8,7 +8,7 @@ import BatComputer from './components/BatComputer';
 import Cursor from './components/Cursor';
 import Archives from './components/Archives';
 import Arsenal from './components/Arsenal';
-import AudioPlayer from './components/AudioPlayer';
+import FloatingDialogues from './components/FloatingDialogues';
 import SectionTransition from './components/SectionTransition';
 import { useEasterEggs } from './hooks/useEasterEggs';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -32,7 +32,7 @@ function App() {
   return (
     <main className={`relative w-full bg-bat-black text-white min-h-screen overflow-x-hidden selection:bg-bat-red selection:text-white ${jokerMode ? 'hue-rotate-90 invert' : ''}`}>
       <Cursor />
-      <AudioPlayer />
+      <FloatingDialogues />
       <div className="film-grain"></div>
       <div className="vignette"></div>
 

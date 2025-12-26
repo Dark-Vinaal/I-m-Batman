@@ -1,6 +1,16 @@
 import { useState, useEffect, type FC } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const miniBats = Array.from({ length: 20 }).map((_, i) => ({
+  id: i,
+  initialX: 0,
+  initialY: 0,
+  targetX: (Math.random() - 0.5) * 800,
+  targetY: (Math.random() - 0.5) * 400,
+  rotation: Math.random() * 720,
+  scale: Math.random() * 1.5 + 0.5,
+}));
+
 const Hero: FC = () => {
   const [hovered, setHovered] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
@@ -61,6 +71,41 @@ const Hero: FC = () => {
               ))}
             </motion.h1>
           </AnimatePresence>
+
+          {/* Swarm of bats on hover */}
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+            {miniBats.map((bat) => (
+              <motion.div
+                key={bat.id}
+                className="absolute"
+                initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+                animate={hovered ? {
+                  x: bat.targetX,
+                  y: bat.targetY,
+                  rotate: bat.rotation,
+                  opacity: [0, 0.9, 0],
+                  scale: [0, bat.scale, 0],
+                } : {
+                  x: 0,
+                  y: 0,
+                  opacity: 0,
+                  scale: 0,
+                }}
+                transition={{
+                  duration: 1.5,
+                  ease: "easeOut",
+                  repeat: hovered ? Infinity : 0,
+                  repeatDelay: Math.random() * 0.5
+                }}
+              >
+                <img
+                  src="/assets/bathover.png"
+                  alt="bat"
+                  className="w-12 h-auto object-contain drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                />
+              </motion.div>
+            ))}
+          </div>
 
           {/* Shadow Stretch Effect (pseudo-bats) */}
           <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-full flex justify-center opacity-30 pointer-events-none">

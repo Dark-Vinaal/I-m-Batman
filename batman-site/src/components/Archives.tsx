@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-    { src: "/assets/Bruce_Wayne.webp", title: "THE BILLIONAIRE" },
-    { src: "/assets/batman-gpt.webp", title: "THE DETECTIVE" },
-    { src: "/assets/batman.jpg", title: "THE SYMBOL" },
-    { src: "/assets/The_Batman.png", title: "THE VENGEANCE" },
+    { src: "/assets/Bruce_Wayne.webp", title: "THE BILLIONAIRE", quote: "A hero can be anyone" },
+    { src: "/assets/batman-gpt.webp", title: "THE DETECTIVE", quote: "Everything's impossible until somebody does it." },
+    { src: "/assets/batman.jpg", title: "THE SYMBOL", quote: "I am the night!" },
+    { src: "/assets/The_Batman.png", title: "THE VENGEANCE", quote: "I am vengeance!" },
 ];
 
 const Archives: React.FC = () => {
@@ -34,7 +34,7 @@ const Archives: React.FC = () => {
                         {/* Text Overlay */}
                         <div className="absolute bottom-6 left-6 right-6">
                             <p className="text-bat-red text-[10px] font-mono mb-1 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                                SCANNING ASSET...
+                                "{img.quote}"
                             </p>
                             <h3 className="text-xl font-bat text-white tracking-widest translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                                 {img.title}
