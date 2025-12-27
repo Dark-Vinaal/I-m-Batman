@@ -8,6 +8,7 @@ import BatComputer from './components/BatComputer';
 import Cursor from './components/Cursor';
 import Archives from './components/Archives';
 import Arsenal from './components/Arsenal';
+import MediaSection from './components/MediaSection';
 import FloatingDialogues from './components/FloatingDialogues';
 import SectionTransition from './components/SectionTransition';
 import { useEasterEggs } from './hooks/useEasterEggs';
@@ -62,6 +63,9 @@ function App() {
       <div className="relative z-10">
         <SectionTransition />
         <Vehicles />
+
+        <SectionTransition />
+        <MediaSection />
 
         <SectionTransition />
         <Arsenal />

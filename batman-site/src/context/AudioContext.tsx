@@ -1,51 +1,41 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 interface AudioContextType {
     isMuted: boolean;
+    isPlaying: boolean;
     toggleMute: () => void;
+    togglePlay: () => void;
 }
 
-const AudioContext = createContext<AudioContextType>({ isMuted: false, toggleMute: () => { } });
-
-export const useAudio = () => useContext(AudioContext);
+const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [isMuted, setIsMuted] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [isMuted, setIsMuted] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false); // Default to false until user interacts or autoplay works
 
     useEffect(() => {
         // Create audio element
         const audio = new Audio('/assets/batmanbgm.mp3');
         audio.loop = true;
-        audio.volume = 0.3;
+        audio.volume = 0.6; // Increased loudness as requested (60% volume)
         audioRef.current = audio;
 
-        // Attempt autoplay
-        const playAudio = async () => {
-            try {
-                await audio.play();
-            } catch (err) {
-                // Autoplay blocked, wait for user interaction
-                const handleInteraction = async () => {
-                    try {
-                        await audio.play();
-                        document.removeEventListener('click', handleInteraction);
-                        document.removeEventListener('keydown', handleInteraction);
-                    } catch (e) {
-                        console.log('Audio play failed:', e);
-                    }
-                };
-                document.addEventListener('click', handleInteraction);
-                document.addEventListener('keydown', handleInteraction);
-            }
-        };
+        // Try to play automatically
+        const playPromise = audio.play();
 
-        playAudio();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                setIsPlaying(true);
+            }).catch((error) => {
+                console.log("Autoplay prevented:", error);
+                setIsPlaying(false);
+            });
+        }
 
-        // Cleanup on unmount
         return () => {
             audio.pause();
-            audio.src = '';
+            audio.src = "";
         };
     }, []);
 
@@ -55,13 +45,35 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     }, [isMuted]);
 
+    useEffect(() => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                audioRef.current.play().catch(e => console.error("Play failed:", e));
+            } else {
+                audioRef.current.pause();
+            }
+        }
+    }, [isPlaying]);
+
     const toggleMute = () => {
         setIsMuted(prev => !prev);
     };
 
+    const togglePlay = () => {
+        setIsPlaying(prev => !prev);
+    };
+
     return (
-        <AudioContext.Provider value={{ isMuted, toggleMute }}>
+        <AudioContext.Provider value={{ isMuted, isPlaying, toggleMute, togglePlay }}>
             {children}
         </AudioContext.Provider>
     );
+};
+
+export const useAudio = () => {
+    const context = useContext(AudioContext);
+    if (context === undefined) {
+        throw new Error('useAudio must be used within an AudioProvider');
+    }
+    return context;
 };

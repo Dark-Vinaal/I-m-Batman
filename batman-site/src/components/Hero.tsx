@@ -50,10 +50,7 @@ const Hero: FC = () => {
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               exit={{ opacity: 0, filter: "blur(20px)", scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[12vw] leading-none font-bat text-white tracking-tighter drop-shadow-[0_10px_20px_rgba(0,0,0,1)]"
-              style={{
-                fontFamily: "'Batmfa', 'Josefin Sans', sans-serif"
-              }}
+              className="text-[12vw] leading-none text-white tracking-tighter drop-shadow-[0_10px_20px_rgba(0,0,0,1)] font-bold uppercase"
             >
               {text.split("").map((char, i) => (
                 <motion.span

@@ -8,33 +8,227 @@
   --color-bat-grey: #1f1f1f;
   --color-bat-silver: #888888;
   --color-bat-red: #660000;
+  --color-bat-ash: #4a4a4a;
+  --color-white-gold: #f5f5dc;
+  --color-ice-white: #e8f4f8;
 
   --font-sans: "Josefin Sans", sans-serif;
-  --font-bat: "Batmfa", sans-serif;
+  --font-bat: "Impact", "Arial Black", sans-serif;
   --font-mono: "Courier New", monospace;
 
   --background-image-carbon: url('/assets/carbon_texture.png');
+  --background-image-bat-glow: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
 }
 
-
-
+/* Batman Font - Using Impact as fallback */
 @font-face {
   font-family: 'Batmfa';
   src: url('/assets/batmfa__.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+/* Font Classes */
+.font-bat {
+  font-family: 'Batmfa', 'Impact', 'Arial Black', sans-serif !important;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 :root {
   color-scheme: dark;
 }
 
-body {
-  @apply bg-bat-black text-white font-sans overflow-x-hidden;
-  cursor: url('/assets/bat_cursor.png'), auto;
+/* Universal Josefin Sans */
+* {
+  font-family: "Josefin Sans", sans-serif;
 }
 
-/* Custom Scrollbar */
+body {
+  @apply bg-bat-black text-white overflow-x-hidden;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: none;
+}
+
+/* ============================================
+   BATMAN HOVER EFFECTS
+   ============================================ */
+
+/* 1. Shadow Vanish - For Cards/Buttons */
+.hover-shadow-vanish {
+  @apply border border-slate-700/50 shadow-md transition-all duration-300 ease-in-out;
+}
+
+.hover-shadow-vanish:hover {
+  @apply -translate-y-2 border-white/80 shadow-2xl;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+/* 2. Batarang Sharpness - For Icons/Links */
+.hover-batarang {
+  @apply transition-all duration-200 ease-out relative overflow-hidden;
+}
+
+.hover-batarang::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.hover-batarang:hover {
+  @apply skew-x-6 scale-110;
+}
+
+.hover-batarang:hover::before {
+  left: 100%;
+}
+
+/* 3. Bat-Computer HUD - For Interactive Elements */
+.hover-hud {
+  @apply relative transition-opacity duration-75;
+}
+
+.hover-hud::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.hover-hud:hover {
+  animation: hud-flicker 0.1s ease-in-out 2;
+}
+
+.hover-hud:hover::after {
+  border-color: rgba(136, 136, 136, 0.6);
+  box-shadow: inset 0 0 10px rgba(136, 136, 136, 0.2);
+}
+
+@keyframes hud-flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Scanline effect for HUD */
+.hover-hud-scanline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-hud-scanline:hover::before {
+  opacity: 1;
+}
+
+/* 4. Tactical Reveal - For Lists/Navigation */
+.hover-tactical {
+  @apply relative transition-all duration-300 ease-out;
+  padding-left: 0;
+}
+
+.hover-tactical::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background-color: #888888;
+  transition: height 0.2s ease-out;
+}
+
+.hover-tactical:hover {
+  letter-spacing: -0.025em;
+  padding-left: 8px;
+}
+
+.hover-tactical:hover::before {
+  height: 60%;
+}
+
+/* 5. Dark Knight Depth - For Images/Avatars */
+.hover-dark-knight {
+  @apply grayscale brightness-50 transition-all duration-500 ease-out;
+}
+
+.hover-dark-knight:hover {
+  @apply grayscale-0 brightness-100;
+  filter: saturate(0.8);
+  box-shadow: inset 0 0 30px rgba(102, 0, 0, 0.4);
+}
+
+/* Night Vision variant (blue tint) */
+.hover-dark-knight-blue:hover {
+  @apply grayscale-0 brightness-100;
+  filter: saturate(0.8) hue-rotate(180deg);
+  box-shadow: inset 0 0 30px rgba(0, 50, 102, 0.4);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Ring utilities for sharp borders */
+.bat-ring {
+  @apply ring-1 ring-white/20 ring-offset-2 ring-offset-black;
+}
+
+.bat-ring:hover {
+  @apply ring-white/60;
+}
+
+/* Bat-Signal glow background */
+.bg-bat-glow {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Gradient Text Animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 8s linear infinite;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -52,7 +246,10 @@ body {
   background: #555;
 }
 
-/* Film Grain Animation */
+/* ============================================
+   FILM GRAIN & VIGNETTE
+   ============================================ */
+
 @keyframes grain {
 
   0%,
@@ -111,7 +308,6 @@ body {
   opacity: 0.07;
 }
 
-/* Vignette */
 .vignette {
   position: fixed;
   top: 0;
@@ -123,7 +319,10 @@ body {
   z-index: 9998;
 }
 
-/* Fog Animation */
+/* ============================================
+   FOG ANIMATION
+   ============================================ */
+
 .fog-container {
   position: fixed;
   top: 0;
@@ -188,5 +387,71 @@ body {
 
   100% {
     transform: translate(0);
+  }
+}
+
+/* ============================================
+   METALLIC SHEEN ANIMATION
+   ============================================ */
+
+@keyframes metallic-sheen {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.hover-metallic-sheen:hover {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: metallic-sheen 1s ease-in-out;
+}
+
+/* ============================================
+   BORDER DRAW ANIMATION
+   ============================================ */
+
+@keyframes border-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hover-border-draw {
+  position: relative;
+}
+
+.hover-border-draw::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.hover-border-draw:hover::after {
+  border-color: rgba(136, 136, 136, 0.5);
+  animation: border-pulse 1s ease-in-out infinite;
+}
+
+@keyframes border-pulse {
+
+  0%,
+  100% {
+    border-color: rgba(136, 136, 136, 0.3);
+  }
+
+  50% {
+    border-color: rgba(136, 136, 136, 0.7);
   }
 }

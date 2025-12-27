@@ -37,7 +37,7 @@ const Vehicles: React.FC = () => {
     );
 };
 
-const ZigZagSection = ({ item, index }: { item: any, index: number }) => {
+const ZigZagSection = ({ item, index }: { item: typeof items[0], index: number }) => {
     const isEven = index % 2 === 0;
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -51,22 +51,29 @@ const ZigZagSection = ({ item, index }: { item: any, index: number }) => {
 
     return (
         <div ref={ref} className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 ${isEven ? '' : 'md:flex-row-reverse'}`}>
-            {/* Image Container */}
+            {/* Image Container with Shadow Vanish & Dark Knight Depth */}
             <motion.div
                 style={{ x: xImg, opacity }}
                 className="w-full md:w-1/2 relative group"
             >
-                <div className="aspect-video overflow-hidden rounded-lg border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-bat-grey/10">
+                <div className="hover-shadow-vanish hover-hud aspect-video overflow-hidden rounded-lg bg-bat-grey/10 relative">
+                    {/* Image with Dark Knight Depth effect */}
                     <img
                         src={item.img}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-110"
+                        className="hover-dark-knight w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
+
+                    {/* Red inner glow on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{ boxShadow: 'inset 0 0 40px rgba(102, 0, 0, 0.5)' }}></div>
+
                     {/* Scanline effect overlay */}
                     <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]"></div>
                 </div>
-                {/* Tactical Label */}
-                <div className="absolute -top-4 -left-4 font-mono text-[10px] text-bat-red tracking-[0.3em] bg-black/80 px-4 py-1 border border-bat-red/30">
+
+                {/* Tactical Label with Batarang effect */}
+                <div className="hover-batarang absolute -top-4 -left-4 font-mono text-[10px] text-bat-red tracking-[0.3em] bg-black/80 px-4 py-1 border border-bat-red/30">
                     SECURE_ASSET_{index + 1}
                 </div>
             </motion.div>
@@ -78,7 +85,7 @@ const ZigZagSection = ({ item, index }: { item: any, index: number }) => {
             >
                 <h3 className="text-3xl md:text-5xl font-bat text-white mb-6 tracking-widest">{item.name}</h3>
                 <div className="relative inline-block">
-                    <p className="text-lg md:text-2xl font-bat italic text-bat-silver leading-relaxed relative z-10">
+                    <p className="text-lg md:text-2xl italic text-bat-silver leading-relaxed relative z-10">
                         "{item.quote}"
                     </p>
                     {/* Accent bar */}

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const gadgets = [
     { title: "NANO GADGET", img: "/assets/nano_banana.png", quote: "Everything's impossible until somebody does it." },
-    { title: "KINETIC SUIT", img: "/assets/nano_suit.png", quote: "It’s not who I am underneath, but what I do that defines me." },
+    { title: "KINETIC SUIT", img: "/assets/nano_suit.png", quote: "It's not who I am underneath, but what I do that defines me." },
     { title: "SYSTEM HUD", img: "/assets/nano_ui.png", quote: "A hero can be anyone" },
 ];
 
@@ -21,13 +21,20 @@ const Arsenal: React.FC = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.2 }}
-                            className="relative aspect-square border border-white/5 bg-bat-grey/20 overflow-hidden rounded-lg hover:border-bat-red/50 transition-colors duration-500 shadow-2xl"
+                            className="hover-shadow-vanish hover-hud relative aspect-square bg-bat-grey/20 overflow-hidden rounded-lg"
                         >
+                            {/* Image with Dark Knight effect (blue tint for tech) */}
                             <img
                                 src={gadget.img}
                                 alt={gadget.title}
-                                className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 hover:scale-105"
+                                className="hover-dark-knight-blue w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
+
+                            {/* Blue tech glow on hover */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                                style={{ boxShadow: 'inset 0 0 50px rgba(0, 50, 102, 0.4)' }}></div>
+
+                            {/* Content overlay */}
                             <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black via-black/40 to-transparent">
                                 <h3 className="text-xl font-bat text-white mb-2">{gadget.title}</h3>
                                 <p className="text-[10px] text-bat-red font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -35,8 +42,11 @@ const Arsenal: React.FC = () => {
                                 </p>
                             </div>
 
-                            {/* Hover texture */}
+                            {/* Carbon fiber hover texture */}
                             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-0 group-hover:opacity-10 pointer-events-none"></div>
+
+                            {/* HUD Scanline effect */}
+                            <div className="hover-hud-scanline absolute inset-0 pointer-events-none"></div>
                         </motion.div>
                     </div>
                 ))}

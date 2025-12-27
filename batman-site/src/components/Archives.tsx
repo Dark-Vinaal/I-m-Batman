@@ -21,14 +21,20 @@ const Archives: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.2 }}
-                        className="group relative aspect-[3/4] bg-bat-dark overflow-hidden border border-white/5 rounded-sm cursor-none"
+                        className="hover-shadow-vanish group relative aspect-[3/4] bg-bat-dark overflow-hidden rounded-sm cursor-none"
                     >
+                        {/* Image with Dark Knight Depth Effect */}
                         <img
                             src={img.src}
                             alt={img.title}
-                            className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110 brightness-50 group-hover:brightness-100"
+                            className="hover-dark-knight w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                         />
-                        {/* Overlay */}
+
+                        {/* Red tint inner glow on hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                            style={{ boxShadow: 'inset 0 0 40px rgba(102, 0, 0, 0.5)' }}></div>
+
+                        {/* Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
 
                         {/* Text Overlay */}
@@ -43,6 +49,9 @@ const Archives: React.FC = () => {
 
                         {/* Carbon Fiber Texture Overlay on hover */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+
+                        {/* HUD Scanline effect on hover */}
+                        <div className="hover-hud-scanline absolute inset-0 pointer-events-none"></div>
                     </motion.div>
                 ))}
             </div>
