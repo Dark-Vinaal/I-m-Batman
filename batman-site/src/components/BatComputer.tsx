@@ -11,14 +11,14 @@ const BatComputer: React.FC<BatComputerProps> = ({ isOverlay = false, onClose })
 
     useEffect(() => {
         const logs = [
-            "INITIALIZING BATCOMPUTER SYSTEM...",
-            "CONNECTING TO GOTHAM POLICE DATABASE...",
-            "ENCRYPTING CONNECTION... SUCCESS",
-            "SCANNING FOR ANOMALIES...",
-            "TARGET IDENTIFIED: PENGUIN",
-            "ANALYZING AUDIO SIGNATURES...",
-            "DOWNLOADING CCTV FOOTAGE...",
-            "SYSTEM SECURE."
+            "DECRYPTING QUANTUM STREAM...",
+            "ENCRYPTING MULTI-VECTOR TUNNELLING... SUCCESS",
+            "REFINING ISOTOPE SCANS... COMPLETED",
+            "LOCATING TACTICAL ASSETS... IDENTIFIED",
+            "SYNCING WITH SATELLITE ARRAY... SECURE",
+            "CALIBRATING ATMOSPHERIC SENSORS...",
+            "ACCESSING ARCHIVE ALPHA... AUTHORIZED",
+            "SYSTEM STATUS: IMMACULATE"
         ];
 
         let i = 0;
@@ -31,24 +31,27 @@ const BatComputer: React.FC<BatComputerProps> = ({ isOverlay = false, onClose })
             }
         }, 800);
         return () => clearInterval(interval);
-    }, [isOverlay]); // reset on open
-
-
+    }, [isOverlay]);
 
     if (isOverlay) {
         return (
             <AnimatePresence>
-                <div className="fixed inset-0 z-[100] bg-black text-green-500 font-mono p-5 overflow-y-auto">
-                    <button onClick={onClose} className="absolute top-5 right-5 border border-green-500 px-4 py-2 hover:bg-green-900">EXIT SYSTEM</button>
-                    <BatComputerContent lines={lines} />
+                <div className="fixed inset-0 z-[100] bg-lux-black text-lux-white font-sans p-8 overflow-y-auto">
+                    <div className="container mx-auto">
+                        <div className="flex justify-between items-center mb-12 border-b border-white/5 pb-6">
+                            <h2 className="text-2xl font-lux-serif tracking-tight">Command Center</h2>
+                            <button onClick={onClose} className="lux-button px-6 py-2 text-xs">DISCONNECT</button>
+                        </div>
+                        <BatComputerContent lines={lines} />
+                    </div>
                 </div>
             </AnimatePresence>
         );
     }
 
     return (
-        <section className="min-h-screen w-full bg-black font-mono text-xs md:text-sm text-green-500 p-10 flex flex-col md:flex-row gap-10 overflow-hidden relative">
-            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(0,50,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,50,0,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+        <section className="min-h-screen w-full bg-lux-black font-sans text-xs md:text-sm text-lux-white p-10 flex flex-col items-center justify-center overflow-hidden relative border-t border-white/5">
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,210,255,0.05)_0%,transparent_70%)]"></div>
             <BatComputerContent lines={lines} />
         </section>
     );
@@ -57,17 +60,11 @@ const BatComputer: React.FC<BatComputerProps> = ({ isOverlay = false, onClose })
 const BatComputerContent = ({ lines }: { lines: string[] }) => {
     const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
     const computerQuotes = [
-        "I am vengeance!",
-        "I am the night!",
-        "I am Batman!",
-        "They think I'm hiding in the shadows. But I am the shadows!",
-        "You either die a hero, or you live long enough to see yourself become the villain.",
-        "Your not brave! Men are brave!",
-        "It’s not who I am underneath, but what I do that defines me.",
-        "A hero can be anyone",
-        "Tell me, do you bleed? I'll make you bleed!",
         "Everything's impossible until somebody does it.",
-        "Oh, you think darkness is your ally. But you merely adopted the dark; I was born in it, moulded by it."
+        "It's not who I am underneath, but what I do that defines me.",
+        "A hero can be anyone",
+        "The night is darkest just before the dawn.",
+        "I am the shadows."
     ];
 
     useEffect(() => {
@@ -78,75 +75,94 @@ const BatComputerContent = ({ lines }: { lines: string[] }) => {
     }, []);
 
     return (
-        <div className="flex flex-col md:flex-row gap-10 w-full">
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[80%] border-t border-green-900/50 pt-2 text-center overflow-hidden">
-                <span className="text-[10px] text-green-800 font-bold tracking-[0.4em] block mb-1">DATA INTERCEPT</span>
-                <AnimatePresence mode="wait">
-                    <motion.p
-                        key={currentQuoteIndex}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="text-sm italic text-green-400 font-mono"
-                    >
-                        "{computerQuotes[currentQuoteIndex]}"
-                    </motion.p>
-                </AnimatePresence>
-            </div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl relative z-10">
             {/* Left Panel: Logs */}
-            <div className="w-full md:w-1/3 border border-green-800 p-6 bg-black/80 backdrop-blur-sm relative">
-                <h3 className="text-xl font-bold border-b border-green-800 pb-2 mb-4">SYSTEM LOGS</h3>
-                <div className="flex flex-col gap-2">
+            <div className="lux-card p-8 bg-black/40 border-white/5 flex flex-col h-[400px]">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-2 rounded-full bg-lux-accent animate-pulse" />
+                    <h3 className="text-sm font-sans tracking-[0.3em] uppercase text-lux-white/50">Neural Stream</h3>
+                </div>
+                <div className="flex-1 overflow-y-auto space-y-3 font-mono text-[10px] md:text-xs">
                     {lines.map((line, idx) => (
-                        <motion.span
+                        <motion.div
                             key={idx}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="block"
+                            className="flex gap-3 text-lux-white/80"
                         >
-                            {`> ${line}`}
-                        </motion.span>
+                            <span className="text-lux-accent/40">[{new Date().toLocaleTimeString([], { hour12: false })}]</span>
+                            <span>{line}</span>
+                        </motion.div>
                     ))}
                     <motion.span
                         animate={{ opacity: [0, 1, 0] }}
                         transition={{ repeat: Infinity, duration: 0.8 }}
-                    >_</motion.span>
+                        className="inline-block w-2 h-4 bg-lux-accent/40"
+                    />
                 </div>
             </div>
 
-            {/* Middle Panel: Map/Data */}
-            <div className="w-full md:w-1/3 border border-green-800 p-6 bg-black/80 flex flex-col items-center justify-center relative min-h-[300px]">
-                <div className="absolute top-2 left-2 text-[10px] text-green-700">COORD: 40.7128° N, 74.0060° W</div>
-                <div className="w-40 h-40 rounded-full border-2 border-green-600 animate-pulse relative flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full border border-green-800"></div>
-                    <div className="absolute w-full h-[1px] bg-green-500 animate-[spin_4s_linear_infinite]"></div>
+            {/* Middle Panel: Visualizer */}
+            <div className="lux-card p-8 bg-gradient-to-br from-lux-accent/5 to-transparent border-lux-accent/20 flex flex-col items-center justify-center min-h-[400px]">
+                <div className="relative w-48 h-48 flex items-center justify-center">
+                    {/* Ring 1 */}
+                    <div className="absolute inset-0 rounded-full border border-lux-accent/20 animate-[spin_10s_linear_infinite]" />
+                    {/* Ring 2 */}
+                    <div className="absolute inset-4 rounded-full border border-lux-accent/40 border-dashed animate-[spin_15s_linear_infinite_reverse]" />
+                    {/* Ring 3 */}
+                    <div className="absolute inset-8 rounded-full border-2 border-lux-accent shadow-[0_0_30px_rgba(0,210,255,0.3)]" />
+                    
+                    <div className="text-center z-10">
+                         <span className="text-[10px] uppercase tracking-widest text-lux-white/40 block mb-1">Scanning</span>
+                         <span className="text-xl font-lux-serif">CORE</span>
+                    </div>
                 </div>
-                <p className="mt-4 animate-pulse">SEARCHING AREA...</p>
+                
+                <div className="mt-12 w-full space-y-4">
+                    <AnimatePresence mode="wait">
+                        <motion.p
+                            key={currentQuoteIndex}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="text-center font-lux-serif italic text-lux-white/60 text-lg"
+                        >
+                            "{computerQuotes[currentQuoteIndex]}"
+                        </motion.p>
+                    </AnimatePresence>
+                </div>
             </div>
 
-            {/* Right Panel: Threat Levels */}
-            <div className="w-full md:w-1/3 border border-green-800 p-6 bg-black/80">
-                <h3 className="text-xl font-bold border-b border-green-800 pb-2 mb-4">THREAT ASSESSMENT</h3>
-                <div className="space-y-4">
-                    <ThreatBar label="GOTHAM CITY" level={85} color="bg-red-600" />
-                    <ThreatBar label="ARKHAM ASYLUM" level={92} color="bg-red-800" />
-                    <ThreatBar label="WAYNE ENTERPRISES" level={12} color="bg-green-600" />
+            {/* Right Panel: Metrics */}
+            <div className="lux-card p-8 bg-black/40 border-white/5 flex flex-col">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-2 h-2 rounded-full bg-lux-gold/60" />
+                    <h3 className="text-sm font-sans tracking-[0.3em] uppercase text-lux-white/50">Market Metrics</h3>
+                </div>
+                <div className="space-y-8 flex-1">
+                    <MetricBar label="Global Reach" level={85} />
+                    <MetricBar label="Encryption Strength" level={98} />
+                    <MetricBar label="Operational Efficiency" level={92} />
+                    <MetricBar label="Lux Exposure" level={45} />
+                </div>
+                <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] uppercase tracking-widest text-lux-white/20">
+                    <span>Ver 4.0.2</span>
+                    <span>System Secure</span>
                 </div>
             </div>
         </div>
     );
 };
 
-const ThreatBar = ({ label, level, color }: { label: string, level: number, color: string }) => (
+const MetricBar = ({ label, level }: { label: string, level: number }) => (
     <div>
-        <div className="flex justify-between mb-1">
-            <span>{label}</span>
-            <span>{level}%</span>
+        <div className="flex justify-between items-end mb-2">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-lux-white/40">{label}</span>
+            <span className="text-xs font-mono text-lux-accent">{level}%</span>
         </div>
-        <div className="w-full h-2 bg-gray-900">
+        <div className="w-full h-[1px] bg-white/5 relative">
             <motion.div
-                className={`h-full ${color}`}
+                className="absolute top-0 left-0 h-full bg-lux-accent shadow-[0_0_10px_rgba(0,210,255,0.5)]"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${level}%` }}
                 viewport={{ once: true }}

@@ -26,73 +26,97 @@ const items = [
 
 const Vehicles: React.FC = () => {
     return (
-        <section className="bg-bat-black py-20 overflow-hidden">
-            <h2 className="text-4xl font-bat text-bat-silver mb-32 tracking-[0.5em] text-center">TACTICAL ASSETS</h2>
-            <div className="container mx-auto px-6 space-y-40">
+        <section className="bg-lux-black py-32 overflow-hidden border-t border-white/5">
+            <div className="container mx-auto px-6 text-center mb-24">
+                <h2 className="text-sm tracking-[0.6em] text-lux-white/40 uppercase mb-4 font-sans">Strategic Assets</h2>
+                <h3 className="text-5xl md:text-7xl font-lux-serif text-lux-white tracking-tight">
+                    Machines You Won't <br /> Find Anywhere Else.
+                </h3>
+            </div>
+            
+            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
                 {items.map((item, i) => (
-                    <ZigZagSection key={i} item={item} index={i} />
+                    <VehicleCard key={i} item={item} index={i} />
                 ))}
+            </div>
+
+            <div className="mt-32 text-center">
+                 <h4 className="text-2xl font-lux-serif text-lux-white mb-4">Advanced Engineering, Zero Compromise</h4>
+                 <p className="text-lux-white/30 text-sm max-w-md mx-auto mb-8">
+                    Every vehicle in the fleet is custom-built by Lucius Fox using Wayne Enterprises' most advanced technology.
+                 </p>
+                 <div className="flex justify-center items-center gap-4">
+                    <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-lux-accent transition-colors cursor-pointer group">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 group-hover:text-lux-accent">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </div>
+                    <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-lux-accent transition-colors cursor-pointer group">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 group-hover:text-lux-accent">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </div>
+                 </div>
             </div>
         </section>
     );
 };
 
-const ZigZagSection = ({ item, index }: { item: typeof items[0], index: number }) => {
-    const isEven = index % 2 === 0;
+const VehicleCard = ({ item, index }: { item: typeof items[0], index: number }) => {
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start end", "end start"]
     });
 
-    const xImg = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? -100 : 100, 0, isEven ? -50 : 50]);
-    const xText = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? 100 : -100, 0, isEven ? 50 : -50]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.2], [0.95, 1]);
+
+    // Vehicle specs
+    const spec = index === 0 ? "1,200 HP" : index === 1 ? "0–60 in 2.1s" : index === 2 ? "Mach 3.2" : "Classified";
 
     return (
-        <div ref={ref} className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 ${isEven ? '' : 'md:flex-row-reverse'}`}>
-            {/* Image Container with Shadow Vanish & Dark Knight Depth */}
-            <motion.div
-                style={{ x: xImg, opacity }}
-                className="w-full md:w-1/2 relative group"
-            >
-                <div className="hover-shadow-vanish hover-hud aspect-video overflow-hidden rounded-lg bg-bat-grey/10 relative">
-                    {/* Image with Dark Knight Depth effect */}
+        <motion.div 
+            ref={ref}
+            style={{ opacity, scale }}
+            className="group relative"
+        >
+            <div className="lux-card p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center bg-gradient-to-br from-lux-white/5 to-transparent">
+                <div className="w-full md:w-1/2 aspect-square overflow-hidden rounded-lg bg-black/40 border border-white/5 relative">
                     <img
                         src={item.img}
                         alt={item.name}
-                        className="hover-dark-knight w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-
-                    {/* Red inner glow on hover */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{ boxShadow: 'inset 0 0 40px rgba(102, 0, 0, 0.5)' }}></div>
-
-                    {/* Scanline effect overlay */}
-                    <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]"></div>
+                    <div className="absolute top-4 left-4 font-sans text-[10px] tracking-widest text-lux-white/50 border border-white/10 px-2 py-1 rounded">
+                        #{index + 1}
+                    </div>
                 </div>
 
-                {/* Tactical Label with Batarang effect */}
-                <div className="hover-batarang absolute -top-4 -left-4 font-mono text-[10px] text-bat-red tracking-[0.3em] bg-black/80 px-4 py-1 border border-bat-red/30">
-                    SECURE_ASSET_{index + 1}
-                </div>
-            </motion.div>
+                <div className="w-full md:w-1/2 flex flex-col justify-between h-full py-4">
+                    <div>
+                        <h4 className="text-lux-accent text-xs tracking-[0.3em] uppercase mb-4">Tactical Vehicle</h4>
+                        <h3 className="text-3xl font-lux-serif text-lux-white mb-6 underline decoration-white/10 underline-offset-8 decoration-1">
+                            {item.name}
+                        </h3>
+                        <p className="text-lux-white/40 text-xs md:text-sm leading-relaxed mb-8">
+                            {item.quote.slice(0, 100)}...
+                        </p>
+                    </div>
 
-            {/* Text Container */}
-            <motion.div
-                style={{ x: xText, opacity }}
-                className={`w-full md:w-1/2 text-center ${isEven ? 'md:text-left' : 'md:text-right'}`}
-            >
-                <h3 className="text-3xl md:text-5xl font-bat text-white mb-6 tracking-widest">{item.name}</h3>
-                <div className="relative inline-block">
-                    <p className="text-lg md:text-2xl italic text-bat-silver leading-relaxed relative z-10">
-                        "{item.quote}"
-                    </p>
-                    {/* Accent bar */}
-                    <div className={`absolute -bottom-4 w-20 h-1 bg-bat-red/50 ${isEven ? 'left-0' : 'right-0'}`}></div>
+                    <div className="flex items-center justify-between mt-auto">
+                        <span className="text-3xl font-lux-serif text-lux-white">{spec}</span>
+                        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-lux-accent hover:text-black transition-all cursor-pointer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-            </motion.div>
-        </div>
+            </div>
+            {/* Glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-lux-accent/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        </motion.div>
     );
 };
 

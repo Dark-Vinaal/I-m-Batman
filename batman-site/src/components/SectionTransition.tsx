@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 
 const SectionTransition: React.FC = () => {
     return (
-        <div className="relative w-full h-40 flex items-center justify-center bg-bat-black overflow-hidden">
+        <div className="relative w-full h-40 flex items-center justify-center bg-lux-black overflow-hidden">
             {/* The "Slit of Light" */}
             <motion.div
                 initial={{ scaleY: 0, opacity: 0 }}
-                whileInView={{ scaleY: 1, opacity: 0.3 }}
+                whileInView={{ scaleY: 1, opacity: 0.2 }}
                 viewport={{ once: false, amount: 0.5 }}
-                className="w-[1px] h-full bg-bat-silver blur-sm"
+                className="w-[1px] h-full bg-lux-accent shadow-[0_0_20px_rgba(0,210,255,0.5)]"
             />
 
             {/* Horizontal dividers that feel like shadows */}

@@ -44,11 +44,11 @@ const FloatingDialogues: React.FC = () => {
             <AnimatePresence>
                 {currentDialogue && (
                     <motion.div
-                        initial={{ opacity: 0, x: "-50%", y: 20 }}
-                        animate={{ opacity: 0.2, x: "-50%", y: 0 }}
-                        exit={{ opacity: 0, x: "-50%", filter: "blur(10px)" }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 0.1, y: 0 }}
+                        exit={{ opacity: 0, filter: "blur(15px)" }}
                         style={{ left: `${currentDialogue.x}%`, top: `${currentDialogue.y}%` }}
-                        className="absolute text-[10px] md:text-xs font-mono text-white/40 tracking-[0.5em] uppercase select-none"
+                        className="absolute text-[10px] md:text-xs font-lux-serif italic text-lux-white/40 tracking-[0.4em] select-none uppercase"
                     >
                         {currentDialogue.text}
                     </motion.div>

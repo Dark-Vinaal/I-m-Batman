@@ -19,7 +19,7 @@ const Dialogue: FC = () => {
     const { scrollYProgress } = useScroll();
 
     return (
-        <div className="fixed top-1/2 left-0 w-full pointer-events-none z-40 mix-blend-difference flex justify-center -translate-y-1/2 px-10 text-center">
+        <div className="fixed top-1/2 left-0 w-full pointer-events-none z-40 flex justify-center -translate-y-1/2 px-10 text-center">
             {quotes.map((q, i) => (
                 <Quote key={i} quote={q} progress={scrollYProgress} />
             ))}
@@ -30,26 +30,38 @@ const Dialogue: FC = () => {
 const Quote = ({ quote, progress }: { quote: { text: string, offset: number }, progress: any }) => {
     const opacity = useTransform(
         progress,
-        [quote.offset - 0.04, quote.offset, quote.offset + 0.04],
+        [quote.offset - 0.05, quote.offset, quote.offset + 0.05],
         [0, 1, 0]
     );
 
     const y = useTransform(
         progress,
-        [quote.offset - 0.04, quote.offset + 0.04],
-        [40, -40]
+        [quote.offset - 0.05, quote.offset + 0.05],
+        [20, -20]
     );
 
     const scale = useTransform(
         progress,
-        [quote.offset - 0.04, quote.offset + 0.04],
-        [0.8, 1.2]
+        [quote.offset - 0.05, quote.offset + 0.05],
+        [0.98, 1.02]
+    );
+
+    const blur = useTransform(
+        progress,
+        [quote.offset - 0.05, quote.offset, quote.offset + 0.05],
+        ["8px", "0px", "8px"]
     );
 
     return (
         <motion.p
-            style={{ opacity, y, scale, display: opacity.get() === 0 ? 'none' : 'block' }}
-            className="absolute max-w-5xl text-3xl md:text-5xl lg:text-6xl font-bat italic tracking-widest text-[#d1d1d1] drop-shadow-[0_0_15px_rgba(0,0,0,1)] px-4"
+            style={{ 
+                opacity, 
+                y, 
+                scale, 
+                filter: `blur(${blur.get()})`,
+                display: opacity.get() === 0 ? 'none' : 'block' 
+            }}
+            className="absolute max-w-4xl text-2xl md:text-4xl lg:text-5xl font-lux-serif italic tracking-tight text-lux-white/90 px-4 leading-tight"
         >
             "{quote.text}"
         </motion.p>

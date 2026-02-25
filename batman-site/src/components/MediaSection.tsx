@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import GhostCursor from './GhostCursor';
 
 const clips = [
     { id: "761uRaAoW00", title: "Batman Clip 1" },
@@ -73,71 +72,45 @@ const SpotlightImage = () => {
 
 const MediaSection: React.FC = () => {
     return (
-        <section className="bg-bat-black relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bat-dark/50 to-bat-black pointer-events-none"></div>
+        <section className="bg-lux-black relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-lux-black pointer-events-none"></div>
 
-            {/* Hidden Batman Section */}
-            <div className="relative w-full h-[600px] flex items-center justify-center overflow-hidden bg-black mb-20 group">
-                {/* Top Gradient Fade for smooth merge */}
-                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bat-black to-transparent z-10 pointer-events-none"></div>
+            {/* Spotlight Section */}
+            <div className="relative w-full h-[600px] flex items-center justify-center overflow-hidden bg-black mb-20 group border-t border-b border-white/5">
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-lux-black to-transparent z-10 pointer-events-none"></div>
 
-                <GhostCursor
-                    color="#ffffff"
-                    brightness={1.2}
-                    edgeIntensity={0.5}
-                    trailLength={50}
-                    inertia={0.3}
-                    grainIntensity={0.08}
-                    bloomStrength={0.3}
-                    bloomRadius={0.5}
-                    mixBlendMode="screen"
-                />
-
-                {/* Hidden Image - Spotlight Effect using mask-image */}
-                <div
-                    className="absolute inset-0 z-0 flex items-center justify-center"
-                >
-                    {/* 
-                        We need to track mouse position for the mask. 
-                        Ideally we'd use a small script or state. Since I can't add state easily without rewriting the whole component start,
-                        I will use a clever CSS trick with group-hover or just absolute positioning if possible? No.
-                        Let's use a masked image that is revealed by the GhostCursor's canvas? 
-                        The GhostCursor is a canvas overlay. 
-                        
-                        ACTUALLY, the user wants it to be visible "only near the cursor".
-                        I will add state to track mouse position and apply a radial-gradient mask.
-                    */}
+                <div className="absolute inset-0 z-0 flex items-center justify-center">
                     <SpotlightImage />
                 </div>
 
-                {/* Bottom Gradient Fade for smooth merge */}
-                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-bat-black to-transparent z-10 pointer-events-none"></div>
+                <div className="relative z-20 text-center">
+                     <span className="text- lux-accent text-[10px] tracking-[0.6em] uppercase mb-4 block opacity-50">The Dark Knight</span>
+                     <h2 className="text-4xl md:text-6xl font-lux-serif italic text-lux-white/90">The Unseen Detail</h2>
+                </div>
+
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-lux-black to-transparent z-10 pointer-events-none"></div>
             </div>
 
             <div className="container mx-auto px-6 relative z-10 py-20">
-                {/* DC Comics Link - Using Batarang Sharpness effect */}
-                <div className="text-center mb-16">
+                {/* DC Comics Link */}
+                <div className="text-center mb-24">
                     <a
                         href="https://www.dc.com/characters/batman"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover-batarang inline-block px-8 py-3 border border-bat-red/50 text-bat-silver hover:text-white hover:border-bat-red tracking-[0.3em] uppercase text-sm font-semibold"
+                        className="lux-button-outline inline-block px-12 py-4 text-xs tracking-[0.4em]"
                     >
-                        Explore Batman on DC.com →
+                        EXPLORE THE LEGACY →
                     </a>
                 </div>
 
                 {/* Clips Section */}
-                <div className="mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bat text-bat-silver mb-10 tracking-[0.3em] text-center"
-                    >
-                        ICONIC CLIPS
-                    </motion.h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="mb-32">
+                    <div className="flex flex-col items-center mb-16">
+                        <span className="text-lux-accent text-[10px] tracking-[0.4em] uppercase mb-2">Cinematic</span>
+                        <h2 className="text-3xl md:text-5xl font-lux-serif text-lux-white/90 tracking-tight">Iconic Moments</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {clips.map((clip, i) => (
                             <motion.div
                                 key={clip.id}
@@ -145,7 +118,7 @@ const MediaSection: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="hover-shadow-vanish hover-hud aspect-video bg-bat-grey/20 rounded-lg overflow-hidden"
+                                className="lux-card aspect-video bg-black/40 overflow-hidden group"
                             >
                                 <iframe
                                     width="100%"
@@ -156,7 +129,7 @@ const MediaSection: React.FC = () => {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerPolicy="strict-origin-when-cross-origin"
                                     allowFullScreen
-                                    className="w-full h-full"
+                                    className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                                 ></iframe>
                             </motion.div>
                         ))}
@@ -164,24 +137,20 @@ const MediaSection: React.FC = () => {
                 </div>
 
                 {/* BGM Section */}
-                <div className="mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bat text-bat-silver mb-10 tracking-[0.3em] text-center"
-                    >
-                        THE BATMAN THEME
-                    </motion.h2>
-                    <div className="max-w-4xl mx-auto">
+                <div className="mb-32">
+                    <div className="flex flex-col items-center mb-16">
+                        <span className="text-lux-accent text-[10px] tracking-[0.4em] uppercase mb-2">Atmospheric</span>
+                        <h2 className="text-3xl md:text-5xl font-lux-serif text-lux-white/90 tracking-tight">Symphony Of Night</h2>
+                    </div>
+                    <div className="max-w-5xl mx-auto">
                         {bgm.map((track, i) => (
                             <motion.div
                                 key={track.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
+                                initial={{ opacity: 0, scale: 0.98 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="hover-shadow-vanish hover-hud-scanline aspect-video bg-bat-grey/20 rounded-lg overflow-hidden border-2 border-bat-red/30 shadow-[0_0_60px_rgba(102,0,0,0.3)] relative"
+                                className="lux-card aspect-video border-lux-accent/20 bg-black/40 overflow-hidden shadow-[0_0_50px_rgba(0,210,255,0.05)]"
                             >
                                 <iframe
                                     width="100%"
@@ -192,7 +161,7 @@ const MediaSection: React.FC = () => {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerPolicy="strict-origin-when-cross-origin"
                                     allowFullScreen
-                                    className="w-full h-full"
+                                    className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                                 ></iframe>
                             </motion.div>
                         ))}
@@ -201,15 +170,11 @@ const MediaSection: React.FC = () => {
 
                 {/* Trailers Section */}
                 <div>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bat text-bat-silver mb-10 tracking-[0.3em] text-center"
-                    >
-                        OFFICIAL TRAILERS
-                    </motion.h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col items-center mb-16">
+                        <span className="text-lux-accent text-[10px] tracking-[0.4em] uppercase mb-2">Unreleased</span>
+                        <h2 className="text-3xl md:text-5xl font-lux-serif text-lux-white/90 tracking-tight">The Vision</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {trailers.map((trailer, i) => (
                             <motion.div
                                 key={trailer.id}
@@ -217,7 +182,7 @@ const MediaSection: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="hover-shadow-vanish hover-hud aspect-video bg-bat-grey/20 rounded-lg overflow-hidden"
+                                className="lux-card aspect-video bg-black/40 overflow-hidden"
                             >
                                 <iframe
                                     width="100%"
@@ -228,7 +193,7 @@ const MediaSection: React.FC = () => {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerPolicy="strict-origin-when-cross-origin"
                                     allowFullScreen
-                                    className="w-full h-full"
+                                    className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                                 ></iframe>
                             </motion.div>
                         ))}

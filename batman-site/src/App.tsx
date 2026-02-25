@@ -31,11 +31,11 @@ function App() {
   };
 
   return (
-    <main className={`relative w-full bg-bat-black text-white min-h-screen overflow-x-hidden selection:bg-bat-red selection:text-white ${jokerMode ? 'hue-rotate-90 invert' : ''}`}>
+    <main className={`relative w-full bg-lux-black text-lux-white min-h-screen overflow-x-hidden selection:bg-lux-accent selection:text-white ${jokerMode ? 'hue-rotate-90 invert' : ''}`}>
       <Cursor />
       <FloatingDialogues />
-      <div className="film-grain"></div>
-      <div className="vignette"></div>
+      <div className="film-grain opacity-20"></div>
+      <div className="vignette opacity-50"></div>
 
       <Ambient />
       <Navbar onLogoClick={handleLogoClick} />
@@ -43,15 +43,21 @@ function App() {
       <AnimatePresence>
         {wayneOpen && (
           <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
-            className="fixed top-0 left-0 w-full bg-white text-black z-[100] overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-lux-black/95 z-[100] flex items-center justify-center backdrop-blur-md"
           >
-            <div className="p-10 font-mono text-center">
-              <h2 className="text-4xl font-bold mb-4">WAYNE ENTERPRISES SECURE LOGIN</h2>
-              <p>ACCESS GRANTED. WELCOME, MISTER WAYNE.</p>
-              <button onClick={() => setWayneOpen(false)} className="mt-4 px-6 py-2 bg-black text-white hover:scale-95 transition-transform active:scale-90 shadow-[0_5px_15px_rgba(0,0,0,0.4)]">CLOSE</button>
+            <div className="max-w-xl w-full mx-4 lux-card p-12 text-center border-lux-accent/20">
+              <span className="text-lux-accent text-[10px] tracking-[0.5em] uppercase mb-6 block">Biometric Verified</span>
+              <h2 className="text-3xl md:text-5xl font-lux-serif mb-8 text-lux-white/90">Welcome back, Mr. Wayne</h2>
+              <div className="flex flex-col gap-4">
+                  <p className="text-lux-white/40 font-sans text-sm tracking-wide leading-relaxed mb-8">
+                    Access to the classified archives and tactical systems has been restored. 
+                    All systems are performing within optimal parameters.
+                  </p>
+                  <button onClick={() => setWayneOpen(false)} className="lux-button px-10 py-3 text-xs w-full max-w-xs mx-auto">ENTER ARCHIVE</button>
+              </div>
             </div>
           </motion.div>
         )}
@@ -77,12 +83,20 @@ function App() {
         <BatComputer isOverlay={showComputer} onClose={() => setShowComputer(false)} />
       </div>
 
-      <footer className="py-20 text-center text-bat-silver font-mono text-xs z-10 relative bg-black border-t border-white/5">
-        <p className="tracking-[0.5em] opacity-30">WAYNE ENTERPRISES &copy; 2025. RESTRICTED ACCESS.</p>
-        <div className="mt-4 flex justify-center gap-4 opacity-20">
-          <span className="w-10 h-[1px] bg-white"></span>
-          <span className="w-2 h-2 rounded-full bg-bat-red"></span>
-          <span className="w-10 h-[1px] bg-white"></span>
+      <footer className="py-32 text-center text-lux-white/20 font-sans text-[10px] z-10 relative bg-lux-black border-t border-white/5">
+        <div className="container mx-auto px-6">
+            <div className="flex justify-center gap-12 mb-12 opacity-50">
+                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Gallery</span>
+                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Archive</span>
+                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Case Files</span>
+            </div>
+            <p className="tracking-[0.6em] mb-4">WAYNE ENTERPRISES &copy; 2026</p>
+            <p className="tracking-[0.2em] opacity-40 uppercase">Protecting Gotham | Since 1939</p>
+            <div className="mt-12 flex justify-center gap-6 items-center">
+              <div className="w-12 h-[1px] bg-white/5" />
+              <div className="w-1.5 h-1.5 rounded-full bg-lux-accent/30 animate-pulse" />
+              <div className="w-12 h-[1px] bg-white/5" />
+            </div>
         </div>
       </footer>
 

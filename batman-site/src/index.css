@@ -1,29 +1,43 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
 @theme {
-  --color-bat-black: #020202;
-  --color-bat-dark: #0a0a0a;
-  --color-bat-grey: #1f1f1f;
+  --color-bat-black: #000000;
+  --color-bat-dark: #050505;
+  --color-bat-grey: #121212;
   --color-bat-silver: #888888;
-  --color-bat-red: #660000;
-  --color-bat-ash: #4a4a4a;
+  --color-bat-red: #cc0000;
+  --color-bat-ash: #2a2a2a;
+
+  /* Luxury Theme Colors */
+  --color-lux-black: #000000;
+  --color-lux-dark: #050505;
+  --color-lux-material: #121212;
+  --color-lux-accent: #00d2ff;
+  --color-lux-white: #f5f5f5;
+  --color-lux-gold: #d4af37;
+
   --color-white-gold: #f5f5dc;
   --color-ice-white: #e8f4f8;
 
-  --font-sans: "Josefin Sans", sans-serif;
+  --font-sans: "Inter", "Josefin Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
   --font-bat: "Impact", "Arial Black", sans-serif;
   --font-mono: "Courier New", monospace;
 
-  --background-image-carbon: url('/assets/carbon_texture.png');
-  --background-image-bat-glow: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  --background-image-carbon: url("/assets/carbon_texture.png");
+  --background-image-bat-glow: radial-gradient(
+    circle,
+    rgba(0, 210, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 
 /* Batman Font - Using Impact as fallback */
 @font-face {
-  font-family: 'Batmfa';
-  src: url('/assets/batmfa__.ttf') format('truetype');
+  font-family: "Batmfa";
+  src: url("/assets/batmfa__.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -31,7 +45,7 @@
 
 /* Font Classes */
 .font-bat {
-  font-family: 'Batmfa', 'Impact', 'Arial Black', sans-serif !important;
+  font-family: "Batmfa", "Impact", "Arial Black", sans-serif !important;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -46,9 +60,62 @@
 }
 
 body {
-  @apply bg-bat-black text-white overflow-x-hidden;
-  font-family: "Josefin Sans", sans-serif;
+  @apply bg-lux-black text-lux-white overflow-x-hidden;
+  font-family: var(--font-sans);
   cursor: none;
+}
+
+/* ============================================
+   LUXURY UI COMPONENTS
+   ============================================ */
+
+@utility glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility font-lux-serif {
+  font-family: var(--font-serif);
+}
+
+.lux-card {
+  @apply glass rounded-xl transition-all duration-500 ease-out;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.lux-card:hover {
+  @apply border-lux-accent/30;
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.lux-button {
+  @apply px-8 py-3 rounded-full font-sans tracking-widest uppercase text-sm transition-all duration-300 relative overflow-hidden;
+  background: var(--color-lux-accent);
+  color: #000;
+}
+
+.lux-button:hover {
+  @apply scale-105;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+.lux-button-outline {
+  @apply px-8 py-3 rounded-full font-sans tracking-widest uppercase text-sm transition-all duration-300 border border-lux-white/20 hover:border-lux-accent hover:text-lux-accent;
+}
+
+.glow-text-lux {
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.section-title {
+  @apply text-5xl md:text-7xl font-lux-serif mb-8 tracking-tight;
 }
 
 /* ============================================
@@ -62,7 +129,9 @@ body {
 
 .hover-shadow-vanish:hover {
   @apply -translate-y-2 border-white/80 shadow-2xl;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(0, 0, 0, 0.8);
 }
 
 /* 2. Batarang Sharpness - For Icons/Links */
@@ -71,13 +140,18 @@ body {
 }
 
 .hover-batarang::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -95,7 +169,7 @@ body {
 }
 
 .hover-hud::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border: 1px solid transparent;
@@ -113,7 +187,6 @@ body {
 }
 
 @keyframes hud-flicker {
-
   0%,
   100% {
     opacity: 1;
@@ -126,14 +199,16 @@ body {
 
 /* Scanline effect for HUD */
 .hover-hud-scanline::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.1) 2px,
-      rgba(0, 0, 0, 0.1) 4px);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -150,7 +225,7 @@ body {
 }
 
 .hover-tactical::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -12px;
   top: 50%;
@@ -203,7 +278,11 @@ body {
 
 /* Bat-Signal glow background */
 .bg-bat-glow {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 
 /* Gradient Text Animation */
@@ -251,7 +330,6 @@ body {
    ============================================ */
 
 @keyframes grain {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -340,7 +418,8 @@ body {
   width: 300vw;
   z-index: 1;
   opacity: 0.3;
-  background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png') repeat-x;
+  background: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png")
+    repeat-x;
   background-size: cover;
   animation: fog 60s linear infinite;
 }
@@ -348,7 +427,8 @@ body {
 .fog-img-2 {
   z-index: 2;
   opacity: 0.2;
-  background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png') repeat-x;
+  background: url("https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png")
+    repeat-x;
   background-size: cover;
   bottom: 0px;
   animation: fog 40s linear infinite reverse;
@@ -405,10 +485,12 @@ body {
 }
 
 .hover-metallic-sheen:hover {
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
   background-size: 200% 100%;
   animation: metallic-sheen 1s ease-in-out;
 }
@@ -432,7 +514,7 @@ body {
 }
 
 .hover-border-draw::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border: 1px solid transparent;
@@ -445,7 +527,6 @@ body {
 }
 
 @keyframes border-pulse {
-
   0%,
   100% {
     border-color: rgba(136, 136, 136, 0.3);
