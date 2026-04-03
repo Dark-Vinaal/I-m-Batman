@@ -86,9 +86,9 @@ function App() {
       <footer className="py-32 text-center text-lux-white/20 font-sans text-[10px] z-10 relative bg-lux-black border-t border-white/5">
         <div className="container mx-auto px-6">
             <div className="flex justify-center gap-12 mb-12 opacity-50">
-                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Gallery</span>
-                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Archive</span>
-                <span className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Case Files</span>
+                <span onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })} className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Gallery</span>
+                <span onClick={() => document.getElementById('archive')?.scrollIntoView({ behavior: 'smooth' })} className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Archive</span>
+                <span onClick={() => document.getElementById('case-files')?.scrollIntoView({ behavior: 'smooth' })} className="tracking-[0.4em] uppercase hover:text-lux-accent transition-colors cursor-pointer">Case Files</span>
             </div>
             <p className="tracking-[0.6em] mb-4">WAYNE ENTERPRISES &copy; 2026</p>
             <p className="tracking-[0.2em] opacity-40 uppercase">Protecting Gotham | Since 1939</p>

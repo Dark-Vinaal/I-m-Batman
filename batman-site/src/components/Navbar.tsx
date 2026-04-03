@@ -41,6 +41,7 @@ const Navbar: FC<{ onLogoClick: () => void }> = ({ onLogoClick }) => {
           {navLinks.map((item) => (
             <li
               key={item}
+              onClick={() => document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}
               className="relative group cursor-pointer transition-colors duration-300 hover:text-lux-accent"
             >
               {item}
@@ -202,7 +203,11 @@ const Navbar: FC<{ onLogoClick: () => void }> = ({ onLogoClick }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ delay: 0.15 + i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setMenuOpen(false);
+                        document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="text-3xl md:text-5xl font-lux-serif tracking-wider text-lux-white/80 hover:text-lux-accent transition-colors duration-300 py-3 relative group"
                   >
                     {item}

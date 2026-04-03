@@ -18,7 +18,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         // Create audio element
         const audio = new Audio('/assets/batmanbgm.mp3');
         audio.loop = true;
-        audio.volume = 0.6; // Increased loudness as requested (60% volume)
+        audio.volume = 1.0; // Increased loudness as requested (100% volume)
         audioRef.current = audio;
 
         // Try to play automatically

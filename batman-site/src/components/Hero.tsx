@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 const Hero: FC = () => {
   return (
     <motion.section
+      id="about"
       className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-lux-black"
     >
       {/* Background with spotlight effect */}
@@ -42,7 +43,10 @@ const Hero: FC = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <div className="flex items-center gap-6">
-               <button className="lux-button">
+               <button 
+                  className="lux-button"
+                  onClick={() => document.getElementById('unseen-detail')?.scrollIntoView({ behavior: 'smooth' })}
+               >
                  Enter The Batcave
                </button>
                <div className="flex flex-col items-start">

@@ -33,15 +33,10 @@ const SpotlightImage = () => {
             }
         };
 
-        // Attach to window or parent if possible, but for now we attach to the specific container ref in the component
         const container = containerRef.current;
         if (container) {
             container.addEventListener('mousemove', handleMouseMove);
         }
-
-        // Fallback: Attach to specific parent group .relative by query selector if ref doesn't capture 
-        // because we are putting this inside the div.
-        // Actually, let's attach to the window for simplicity and check bound relative to a ref.
 
         return () => {
             if (container) {
@@ -58,11 +53,13 @@ const SpotlightImage = () => {
             <img
                 src="/assets/batman.jpg"
                 alt="Hidden Batman"
-                className="w-full h-full object-cover mix-blend-screen pointer-events-none"
+                className="w-full h-full object-cover mix-blend-screen pointer-events-none transition-all duration-75"
                 style={{
                     filter: 'contrast(1.3) brightness(1.3) grayscale(0.5)',
-                    maskImage: `radial-gradient(circle 150px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 90%)`,
-                    WebkitMaskImage: `radial-gradient(circle 150px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 90%)`,
+                    maskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 90%)`,
+                    WebkitMaskImage: `radial-gradient(circle 400px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 90%)`,
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskRepeat: 'no-repeat',
                     opacity: 0.8
                 }}
             />
@@ -72,7 +69,7 @@ const SpotlightImage = () => {
 
 const MediaSection: React.FC = () => {
     return (
-        <section className="bg-lux-black relative overflow-hidden">
+        <section id="unseen-detail" className="bg-lux-black relative overflow-hidden cursor-none">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-lux-black pointer-events-none"></div>
 
             {/* Spotlight Section */}
@@ -105,7 +102,7 @@ const MediaSection: React.FC = () => {
                 </div>
 
                 {/* Clips Section */}
-                <div className="mb-32">
+                <div id="case-files" className="mb-32">
                     <div className="flex flex-col items-center mb-16">
                         <span className="text-lux-accent text-[10px] tracking-[0.4em] uppercase mb-2">Cinematic</span>
                         <h2 className="text-3xl md:text-5xl font-lux-serif text-lux-white/90 tracking-tight">Iconic Moments</h2>

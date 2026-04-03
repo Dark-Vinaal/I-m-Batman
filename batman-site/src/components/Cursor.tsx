@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Cursor: React.FC = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const mouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
+            const target = e.target as HTMLElement;
+            setIsVisible(target.closest('#unseen-detail') !== null);
         };
 
         const mouseOver = (e: MouseEvent) => {
@@ -29,30 +32,40 @@ const Cursor: React.FC = () => {
     }, []);
 
     return (
-        <>
-            <motion.div
-                className="fixed top-0 left-0 pointer-events-none z-[9999]"
-                animate={{
-                    x: mousePosition.x - 4,
-                    y: mousePosition.y - 4,
-                }}
-                transition={{ type: "spring", stiffness: 1000, damping: 50 }}
-            >
-                <div className="w-2 h-2 rounded-full bg-lux-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
-            </motion.div>
-            <motion.div
-                className="fixed top-0 left-0 pointer-events-none z-[9998]"
-                animate={{
-                    x: mousePosition.x - 20,
-                    y: mousePosition.y - 20,
-                    scale: isHovering ? 1.5 : 1,
-                    borderColor: isHovering ? "rgba(0, 210, 255, 0.8)" : "rgba(0, 210, 255, 0.2)"
-                }}
-                transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            >
-                <div className={`w-10 h-10 rounded-full border border-lux-accent/30 transition-colors duration-300`}></div>
-            </motion.div>
-        </>
+        <AnimatePresence>
+            {isVisible && (
+                <>
+                    <motion.div
+                        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+                        initial={{ opacity: 0 }}
+                        animate={{
+                            opacity: 1,
+                            x: mousePosition.x - 4,
+                            y: mousePosition.y - 4,
+                        }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 1000, damping: 50 }}
+                    >
+                        <div className="w-2 h-2 rounded-full bg-lux-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+                    </motion.div>
+                    <motion.div
+                        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+                        initial={{ opacity: 0 }}
+                        animate={{
+                            opacity: 1,
+                            x: mousePosition.x - 20,
+                            y: mousePosition.y - 20,
+                            scale: isHovering ? 1.5 : 1,
+                            borderColor: isHovering ? "rgba(0, 210, 255, 0.8)" : "rgba(0, 210, 255, 0.2)"
+                        }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                    >
+                        <div className={`w-10 h-10 rounded-full border border-lux-accent/30 transition-colors duration-300`}></div>
+                    </motion.div>
+                </>
+            )}
+        </AnimatePresence>
     );
 };
 

@@ -62,7 +62,6 @@
 body {
   @apply bg-lux-black text-lux-white overflow-x-hidden;
   font-family: var(--font-sans);
-  cursor: none;
 }
 
 /* ============================================

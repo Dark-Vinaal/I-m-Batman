@@ -10,7 +10,7 @@ const images = [
 
 const Archives: React.FC = () => {
     return (
-        <section className="py-32 px-6 bg-lux-black border-t border-white/5">
+        <section id="archive" className="py-32 px-6 bg-lux-black border-t border-white/5">
             <div className="container mx-auto">
                 <div className="text-center mb-24">
                     <h2 className="text-sm tracking-[0.5em] text-lux-white/40 uppercase mb-4 font-sans">Gotham Citizens</h2>

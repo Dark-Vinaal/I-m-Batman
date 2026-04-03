@@ -26,7 +26,7 @@ const items = [
 
 const Vehicles: React.FC = () => {
     return (
-        <section className="bg-lux-black py-32 overflow-hidden border-t border-white/5">
+        <section id="gallery" className="bg-lux-black py-32 overflow-hidden border-t border-white/5">
             <div className="container mx-auto px-6 text-center mb-24">
                 <h2 className="text-sm tracking-[0.6em] text-lux-white/40 uppercase mb-4 font-sans">Strategic Assets</h2>
                 <h3 className="text-5xl md:text-7xl font-lux-serif text-lux-white tracking-tight">

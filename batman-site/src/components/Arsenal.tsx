@@ -9,7 +9,7 @@ const gadgets = [
 
 const Arsenal: React.FC = () => {
     return (
-        <section className="py-32 bg-lux-black relative overflow-hidden">
+        <section id="armoury" className="py-32 bg-lux-black relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
                     <motion.div
