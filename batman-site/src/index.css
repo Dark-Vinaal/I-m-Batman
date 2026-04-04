@@ -34,7 +34,7 @@
   );
 }
 
-/* Batman Font - Using Impact as fallback */
+/* Batman Font - Using Batmfa if available */
 @font-face {
   font-family: "Batmfa";
   src: url("/assets/batmfa__.ttf") format("truetype");
@@ -43,7 +43,7 @@
   font-display: swap;
 }
 
-/* Font Classes */
+/* Base Classes */
 .font-bat {
   font-family: "Batmfa", "Impact", "Arial Black", sans-serif !important;
   letter-spacing: 0.15em;
@@ -275,14 +275,7 @@ body {
   @apply ring-white/60;
 }
 
-/* Bat-Signal glow background */
-.bg-bat-glow {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-}
+/* NOTE: bg-bat-glow is automatically generated from --background-image-bat-glow in @theme */
 
 /* Gradient Text Animation */
 @keyframes gradient {
