@@ -564,7 +564,7 @@ If you enjoyed exploring Gotham and the Batcomputer,
 <pre>
 MISSION STATUS
 
-█████████████████████ 100%
+███████████████████████████████████████████████████████████████ 100%
 </pre>
 
 ## 🦇
@@ -575,6 +575,6 @@ MISSION STATUS
 <img src="https://img.shields.io/badge/BATCOMPUTER-ONLINE-111111?style=for-the-badge&logo=windows-terminal&logoColor=F5C542"/>
 <img src="https://img.shields.io/badge/GOTHAM-SECURED-111111?style=for-the-badge&logo=cloudflare&logoColor=F5C542"/>
 
-![Footer]()
+![Footer](https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/gold-footer.svg)
 
 </div>
