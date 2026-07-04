@@ -34,9 +34,9 @@
 
 </div>
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🦇 I'M BATMAN
+## 🦇 I'M BATMAN
 
 > **"It's Not who I am Underneath, But What I do that Defines Me."**
 
@@ -46,9 +46,9 @@ Instead of creating a traditional fan page, this project recreates the feeling o
 
 Every section is designed with cinematic transitions, ambient effects, luxury minimalism, and interactive storytelling.
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# ⚡ Mission Brief
+## ⚡ Mission Brief
 
 ```txt
 PROJECT NAME      : I'M BATMAN
@@ -61,9 +61,9 @@ FRAMEWORK         : React
 MISSION           : Protect Gotham
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🌌 Project Vision
+## 🌌 Project Vision
 
 ```mermaid
 graph LR
@@ -90,9 +90,9 @@ F --> H
 G --> H
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# ✨ Highlights
+## ✨ Highlights
 
 | 🦇 | Feature |
 |----|---------|
@@ -109,9 +109,9 @@ G --> H
 | ⚡ | Smooth Framer Motion Animations |
 | 📱 | Responsive Design |
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎨 Design Philosophy
+## 🎨 Design Philosophy
 
 ```mermaid
 graph TD
@@ -135,9 +135,9 @@ E --> G
 F --> G
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 📸 Experience
+## 📸 Experience
 
 This isn't a simple website.
 
@@ -157,11 +157,9 @@ It's an interactive Batman experience featuring:
 
 Every scroll reveals another chapter inside the Batcave.
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=rect&height=5&color=0:000000,50:F5C542,100:000000"/>
-
-# 🏗 Wayne Enterprises Architecture
+## 🏗 Wayne Enterprises Architecture
 
 ```mermaid
 graph TD
@@ -183,9 +181,9 @@ F --> G[🖥 Batcomputer]
 G --> H[🔒 Hidden Protocols]
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# ⚙ Tech Stack
+## ⚙ Tech Stack
 
 <div align="center">
 
@@ -203,9 +201,9 @@ G --> H[🔒 Hidden Protocols]
 
 </div>
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 📦 Project Structure
+## 📦 Project Structure
 
 ```txt
 📦 I'm Batman
@@ -236,14 +234,14 @@ G --> H[🔒 Hidden Protocols]
 │   ├── 📄 App.tsx
 │   └── 🚀 main.tsx
 │
-├── ⚙ package.json
+├── ⚙ assets
 ├── 📄 README.md
 └── 📜 LICENSE
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🖥 System Overview
+## 🖥 System Overview
 
 ```mermaid
 graph LR
@@ -263,9 +261,9 @@ E --> F[Archives]
 F --> G[Batcomputer]
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎨 Interface Design
+## 🎨 Interface Design
 
 The interface follows a luxury Gotham-inspired design language.
 
@@ -280,9 +278,9 @@ The interface follows a luxury Gotham-inspired design language.
 - 🖥 HUD inspired UI
 - ⚡ Smooth transitions
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎬 Hero Experience
+## 🎬 Hero Experience
 
 The homepage immediately places visitors inside Gotham through a cinematic fullscreen hero section.
 
@@ -295,9 +293,9 @@ The homepage immediately places visitors inside Gotham through a cinematic fulls
 - 🎯 Enter The Batcave CTA
 - ⚡ Smooth page transition
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🚗 Strategic Assets
+## 🚗 Strategic Assets
 
 The Bat Garage showcases legendary Batman vehicles.
 
@@ -315,9 +313,9 @@ Each vehicle features:
 - tactical specifications
 - Gotham quotes
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🛠 WayneTech Arsenal
+## 🛠 WayneTech Arsenal
 
 The Arsenal introduces futuristic equipment engineered by Wayne Enterprises.
 
@@ -336,9 +334,9 @@ Every card features
 - animated transitions
 - cinematic layout
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎞 Media Center
+## 🎞 Media Center
 
 The Media section acts as Gotham's cinematic archive.
 
@@ -354,9 +352,9 @@ The Media section acts as Gotham's cinematic archive.
 
 🌐 Official DC Link
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# ⚡ Performance
+## ⚡ Performance
 
 ✔ Optimized React Components
 
@@ -374,17 +372,15 @@ The Media section acts as Gotham's cinematic archive.
 
 ✔ High FPS Animations
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=rect&height=5&color=0:000000,50:F5C542,100:000000"/>
-
-# 🖥 Wayne Enterprises Command Center
+## 🖥 Wayne Enterprises Command Center
 
 The **Batcomputer** serves as the digital heart of the entire experience.
 
 Inspired by Batman's command center from various cinematic universes, it provides an immersive futuristic dashboard with animated logs, tactical scanning systems, rotating HUD elements, live metrics and classified archives.
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
 ## 💻 Batcomputer Features
 
@@ -401,17 +397,15 @@ Inspired by Batman's command center from various cinematic universes, it provide
 
 </div>
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎵 Wayne Audio Engine
+## 🎵 Wayne Audio Engine
 
 The experience isn't complete without sound.
 
 The website includes a dedicated audio system capable of playing ambient Batman music while allowing visitors to control playback without interrupting the experience.
 
----
-
-## Features
+### Features
 
 🎵 Background Theme
 
@@ -425,9 +419,7 @@ The website includes a dedicated audio system capable of playing ambient Batman 
 
 🎧 HTML5 Audio
 
----
-
-## Audio Workflow
+### Audio Workflow
 
 ```mermaid
 sequenceDiagram
@@ -448,9 +440,9 @@ Audio Context->>Background Music: Play
 
 ```
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🖱 Custom Cursor
+## 🖱 Custom Cursor
 
 A custom Batman cursor replaces the default pointer throughout the project.
 
@@ -468,9 +460,9 @@ A custom Batman cursor replaces the default pointer throughout the project.
 
 ✔ Luxury Feel
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎬 Animation System
+## 🎬 Animation System
 
 Every animation is handcrafted using **Framer Motion**.
 
@@ -492,15 +484,15 @@ Animations include
 
 - Section reveal
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 🎥 Cinematic Experience
+## 🎥 Cinematic Experience
 
 Rather than functioning as a standard portfolio or fan page, the project is structured like a cinematic journey.
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 📡 Tactical Systems
+## 📡 Tactical Systems
 
 <div align="center">
 
@@ -517,15 +509,9 @@ Rather than functioning as a standard portfolio or fan page, the project is stru
 
 </div>
 
-<pre>
-MISSION STATUS
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-█████████████████████ 100%
-</pre>
-
----
-
-# 🧩 Developer Notes
+## 🧩 Developer Notes
 
 This project was built as both
 
@@ -539,13 +525,13 @@ The goal wasn't simply to display Batman content—
 
 it was to make visitors **feel like they had entered the Batcave.**
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# 👨‍💻 Developer
+## 👨‍💻 Developer
 
 <div align="center">
 
-## Vinaal R
+### Vinaal R
 
 Creative Developer • Full Stack Developer • UI Explorer
 
@@ -565,38 +551,30 @@ Creative Developer • Full Stack Developer • UI Explorer
 
 </div>
 
----
+<div align="center"> <img src="https://github.com/Dark-Vinaal/I-m-Batman/blob/main/assets/goldline.svg"> </div>
 
-# ⭐ Support
+## ⭐ Support
 
 If you enjoyed exploring Gotham and the Batcomputer,
 
-consider giving this repository a ⭐.
-
-Every star helps the project reach more Batman fans and developers.
-
----
+> Consider giving this repository a ⭐ Every star helps the project reach more Batman fans and developers.
 
 <div align="center">
+
+<pre>
+MISSION STATUS
+
+█████████████████████ 100%
+</pre>
 
 ## 🦇
 
-### "It's not who I am underneath, but what I do that defines me."
-
-<br>
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=160&section=footer&color=0:000000,50:F5C542,100:000000"/>
-
-</div>
-
----
-
-<div align="center">
+#### "It's not who I am underneath, but what I do that defines me."
 
 <img src="https://img.shields.io/badge/CLEARANCE-LEVEL_VII-000000?style=for-the-badge&logo=securityscorecard&logoColor=F5C542"/>
-
 <img src="https://img.shields.io/badge/BATCOMPUTER-ONLINE-111111?style=for-the-badge&logo=windows-terminal&logoColor=F5C542"/>
-
 <img src="https://img.shields.io/badge/GOTHAM-SECURED-111111?style=for-the-badge&logo=cloudflare&logoColor=F5C542"/>
+
+![Footer]()
 
 </div>
